@@ -21,8 +21,7 @@ for _ in range(change_cnt):
         tmp = ['A']
     else:
         tmp = ['B']
-    if winners == tmp:
-        continue
-    winners = tmp
-    answer += 1
+    if winners != tmp:
+        winners = tmp
+        answer += 1
 print(answer)
