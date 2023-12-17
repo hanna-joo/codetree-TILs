@@ -10,7 +10,7 @@
 
 change_cnt = int(input())
 scores = {'A': 0, 'B': 0}
-winners = []
+winners = ['A', 'B']
 answer = 0
 for _ in range(change_cnt):
     player, change = input().split()
