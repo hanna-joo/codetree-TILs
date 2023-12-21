@@ -7,6 +7,9 @@ from collections import deque
 n = int(input())
 points = [i-1 for i in map(int, input().split())]
 s, e = points[:2], points[2:]
+if s == e:
+    print(0)
+    exit()
 graph = [[0 for _ in range(n)] for _ in range(n)]
 steps = [[0 for _ in range(n)] for _ in range(n)]
 dy, dx = [-2, -2, -1, -1, 1, 1, 2, 2], [-1, 1, -2, 2, -2, 2, -1, 1]
