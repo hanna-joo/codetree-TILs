@@ -32,7 +32,7 @@ def search_pos(cy, cx):
         if 0<=ny<n and 0<=nx<n:
             if grid[ny][nx] > grid[by][bx]:
                 by, bx = ny, nx
-    return cy, cx
+    return by, bx
 
 
 def move_balls():
