@@ -17,27 +17,27 @@
 """
 
 n, m, t = map(int, input().split())
-grid = [[*map(int, input().split())] for _ in range(n)]
-balls = [[0 for _ in range(n)] for _ in range(n)]
+grid = [[0 for _ in range(n+1)]] + [[0] + [*map(int, input().split())] for _ in range(n)]
+balls = [[0 for _ in range(n+1)] for _ in range(n+1)]
 for _ in range(m):
     r, c = map(int, input().split())
-    balls[r-1][c-1] += 1
+    balls[r][c] += 1
 
 
 def search_pos(cy, cx):
     dy, dx = [-1, 1, 0, 0], [0, 0, -1, 1]
-    max_y, max_x = cy+dy[0], cx+dx[0]
-    for i in range(1, 4):
+    max_val, max_y, max_x = 0, 0, 0
+    for i in range(4):
         ny, nx = cy+dy[i], cx+dx[i]
-        if 0<=ny<n and 0<=nx<n and grid[ny][nx] > grid[max_y][max_x]:
-                max_y, max_x = ny, nx
+        if 0<ny<=n and 0<nx<=n and grid[ny][nx] > max_val:
+            max_y, max_x = ny, nx
     return max_y, max_x
 
 
 def move_balls():
     global balls
     # 2. 모든 칸을 탐색한다
-    next_balls = [[0 for _ in range(n)] for _ in range(n)]
+    next_balls = [[0 for _ in range(n+1)] for _ in range(n+1)]
     for i in range(n):
         for j in range(n):
             # 2-1. balls에 구슬이 있는지 확인한다
@@ -51,16 +51,16 @@ def move_balls():
 
 def remove_balls():
     # 4. balls에서 구슬이 2개 이상이면 해당 위치를 0으로 변경한다
-    for i in range(n):
-        for j in range(n):
+    for i in range(1, n+1):
+        for j in range(1, n+1):
             if balls[i][j] >= 2:
                 balls[i][j] = 0
 
 
 def count_balls():
     cnt = 0
-    for i in range(n):
-        for j in range(n):
+    for i in range(1, n+1):
+        for j in range(1, n+1):
             cnt += balls[i][j]
     return cnt
 
