@@ -29,8 +29,7 @@ def search_pos(cy, cx):
     by, bx = cy, cx
     for i in range(4):
         ny, nx = cy+dy[i], cx+dx[i]
-        if 0<=ny<n and 0<=nx<n:
-            if grid[ny][nx] > grid[by][bx]:
+        if 0<=ny<n and 0<=nx<n and grid[ny][nx] > grid[by][bx]:
                 by, bx = ny, nx
     return by, bx
 
@@ -47,10 +46,7 @@ def move_balls():
                 next_balls[ny][nx] += 1
 
     # 3. 모든 탐색이 끝나면 balls를 new_balls로 변경한다
-    for i in range(n):
-        for j in range(n):
-            balls[i][j] = next_balls[i][j]
-    #balls = next_balls
+    balls = next_balls
 
 
 def remove_balls():
@@ -65,8 +61,7 @@ def count_balls():
     cnt = 0
     for i in range(n):
         for j in range(n):
-            if balls[i][j] == 1:
-                cnt += 1
+            cnt += balls[i][j]
     return cnt
 
 
