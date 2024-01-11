@@ -38,8 +38,8 @@ def move_balls():
     global balls
     # 2. 모든 칸을 탐색한다
     next_balls = [[0 for _ in range(n+1)] for _ in range(n+1)]
-    for i in range(n):
-        for j in range(n):
+    for i in range(1, n+1):
+        for j in range(1, n+1):
             # 2-1. balls에 구슬이 있는지 확인한다
             if balls[i][j] == 1:
                 ny, nx = search_pos(i, j)
