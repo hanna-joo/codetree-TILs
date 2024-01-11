@@ -26,12 +26,12 @@ for _ in range(m):
 
 def search_pos(cy, cx):
     dy, dx = [-1, 1, 0, 0], [0, 0, -1, 1]
-    by, bx = cy, cx
-    for i in range(4):
+    max_y, max_x = cy+dy[0], cx+dx[0]
+    for i in range(1, 4):
         ny, nx = cy+dy[i], cx+dx[i]
-        if 0<=ny<n and 0<=nx<n and grid[ny][nx] > grid[by][bx]:
-                by, bx = ny, nx
-    return by, bx
+        if 0<=ny<n and 0<=nx<n and grid[ny][nx] > grid[max_y][max_x]:
+                max_y, max_x = ny, nx
+    return max_y, max_x
 
 
 def move_balls():
