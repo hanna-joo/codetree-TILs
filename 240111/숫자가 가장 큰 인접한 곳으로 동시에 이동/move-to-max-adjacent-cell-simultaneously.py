@@ -10,8 +10,8 @@
 - 2. 모든 칸을 탐색한다
     - 2-1. balls에 구슬이 있는지 확인한다
     - 2-2. 구슬이 있으면 상하좌우 돌아가면서 현재 칸보다 큰 값을 찾는다
-    - 2-3. 큰 값이 있으면 new_balls 해당 위치에 +1한다
-- 3. 모든 탐색이 끝나면 balls를 new_balls로 변경한다
+    - 2-3. 큰 값이 있으면 next_balls 해당 위치에 +1한다
+- 3. 모든 탐색이 끝나면 balls를 next_balls로 변경한다
 - 4. balls에서 구슬이 2개 이상이면 해당 위치를 0으로 변경한다
 - 5. t초 간 2-4 과정을 반복 이후 최종적으로 남은 구슬의 수를 출력한다
 """
@@ -47,7 +47,10 @@ def move_balls():
                 next_balls[ny][nx] += 1
 
     # 3. 모든 탐색이 끝나면 balls를 new_balls로 변경한다
-    balls = next_balls
+    for i in range(n):
+        for j in range(n):
+            balls[i][j] = next_balls[i][j]
+    #balls = next_balls
 
 
 def remove_balls():
