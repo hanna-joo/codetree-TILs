@@ -70,4 +70,5 @@ def count_balls():
 for _ in range(t):
     move_balls()
     remove_balls()
-    print(count_balls())
+
+print(count_balls())
