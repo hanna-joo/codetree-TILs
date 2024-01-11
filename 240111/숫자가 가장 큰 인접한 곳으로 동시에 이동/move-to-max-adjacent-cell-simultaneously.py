@@ -30,7 +30,7 @@ def search_pos(cy, cx):
     for i in range(4):
         ny, nx = cy+dy[i], cx+dx[i]
         if 0<ny<=n and 0<nx<=n and grid[ny][nx] > max_val:
-            max_y, max_x = ny, nx
+            max_y, max_x, max_val = ny, nx, grid[ny][nx]
     return max_y, max_x
 
 
