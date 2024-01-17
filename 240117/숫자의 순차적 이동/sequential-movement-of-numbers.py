@@ -15,41 +15,47 @@
 
 import sys
 
-def search_pos(target):
+def in_range(y, x):
+    return 0 <= y and y < n and 0 <= x and x < n
+
+
+def find_pos(num):
     for i in range(n):
         for j in range(n):
-            if grid[i][j] == target:
-                return i, j
+            if grid[i][j] == num:
+                return (i, j)
 
 
-def search_max(cy, cx):
-    dy, dx = [-1, -1, -1, 0, 0, 1, 1, 1], [-1, 0, 1, -1, 1, -1, 0, 1]
-    max_val = -sys.maxsize
-    max_pos = (0, 0)
-    for i in range(8):
-        ny, nx = cy + dy[i], cx + dx[i]
-        if 0<=ny<n and 0<=nx<n:
-            if max_val < grid[ny][nx]:
-                max_pos = (ny, nx)
-                max_val = grid[ny][nx]
+def find_next_pos(pos):
+    dys, dxs = [-1, -1, -1, 0, 0, 1, 1, 1], [-1, 0, 1, -1, 1, -1, 0, 1]
+
+    cy, cx = pos
+
+    max_val = -1
+    max_pos = (-1, -1)
+    for dx, dy in zip(dys, dxs):
+        ny, nx = cy + dy, cx + dx
+        if in_range(ny, nx) and max_val < grid[ny][nx]:
+            max_pos = (ny, nx)
+            max_val = grid[ny][nx]
     return max_pos
 
 
-def change_max(from_pos, to_pos):
-    fy, fx = from_pos
-    ty, tx = to_pos
-    grid[fy][fx], grid[ty][tx] = grid[ty][tx], grid[fy][fx]
+def swap_pos(pos, next_pos):
+    (cy, cx), (ny, nx) = pos, next_pos
+    grid[cy][cx], grid[ny][nx] = grid[ny][nx], grid[cy][cx]
 
 
 def simulate():
-    for i in range(1, n*n+1):
-        cy, cx = search_pos(i)
-        max_pos = search_max(cy, cx)
-        change_max((cy, cx), max_pos)
+    for num in range(1, n*n+1):
+        pos = find_pos(num)
+        max_pos = find_next_pos(pos)
+        swap_pos(pos, max_pos)
 
 
 n, m = map(int, input().split())
 grid = [[*map(int, input().split())] for _ in range(n)]
+
 for _ in range(m):
     simulate()
 
