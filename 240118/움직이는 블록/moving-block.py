@@ -19,9 +19,9 @@
 N = int(input())
 nums = [int(input()) for _ in range(N)]
 
-base = sum(nums) // N
+avg = sum(nums) // N
 ans = 0
 for num in nums:
-    ans += (num - base) if num > base else 0
+    ans += (num - avg) if num > avg else 0
 
 print(ans)
