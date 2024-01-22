@@ -22,10 +22,11 @@ ready = False
 cnt = 0
 pos = 0
 ans = 0
-if m >= n:
+
+if m >= n and 1 in houses:
     print(1)
     exit()
-    
+
 while pos < n:
     if houses[pos] == 1:
         ready = True
