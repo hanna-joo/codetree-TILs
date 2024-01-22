@@ -34,7 +34,7 @@ while pos < n:
         if cnt == m:
             ans += 1
             ready, cnt = False, 0
-            pos += max(1, m)
+            pos += max(1, m+1)
             continue
         cnt += 1
     pos += 1
