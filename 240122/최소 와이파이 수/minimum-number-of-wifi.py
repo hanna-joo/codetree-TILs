@@ -24,11 +24,12 @@ ans = 0
 for h in houses:
     if ready:
         cnt += 1
-    if h == 1:
-        ready = True
     if cnt == m:
         ans += 1
         ready = False
         cnt = 0
+    if h == 1:
+        ready = True
+
 
 print(ans)
