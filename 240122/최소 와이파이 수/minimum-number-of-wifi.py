@@ -39,5 +39,6 @@ while pos < n:
         cnt += 1
     pos += 1
 
-
+if ready:
+    ans += 1
 print(ans)
