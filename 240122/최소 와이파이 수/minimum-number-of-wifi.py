@@ -20,16 +20,19 @@ n, m = map(int, input().split())
 houses = [*map(int, input().split())]
 ready = False
 cnt = 0
+cur = 0
 ans = 0
-for h in houses:
+while cur < n:
     if ready:
         cnt += 1
-    if cnt == m:
-        ans += 1
-        ready = False
-        cnt = 0
-    if h == 1:
+        if cnt == m:
+            ans += 1
+            ready, cnt = False, 0
+            cur += m
+            continue
+    if houses[cur] == 1:
         ready = True
+    cur += 1
 
 
 print(ans)
