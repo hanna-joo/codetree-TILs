@@ -31,7 +31,14 @@ for _ in range(T):
         x, y = int(x), int(y)
         balls_pos.append([x, y, d])
         balls_cnt[x][y] += 1
+    time, prev_total = 0, sum(sum(row) for row in balls_cnt)
     while True:
+        if time == 2 * N + 2:
+            if total == prev_total:
+                break
+            time = 0
+            prev_total = total
+
         tmp_pos = []
         for cx, cy, cd in balls_pos:
             nx, ny = cx + command[cd][0], cy + command[cd][1]
@@ -44,20 +51,21 @@ for _ in range(T):
             balls_cnt[nx][ny] += 1
             # 새로운 위치 저장
             tmp_pos.append([nx, ny, cd])
+        # 구슬 개수 세기
         total = 0
-        for i in range(N+1):
-            for j in range(N+1):
+        for i in range(1, N+1):
+            for j in range(1, N+1):
+                # 구슬 개수 2개 이상이면 구슬 삭제
                 if balls_cnt[i][j] >= 2:
                     balls_cnt[i][j] = 0
-                    tmp_pos_2 = []
-                    for i, k in enumerate(tmp_pos):
-                        if k[:2] == [i, j]:
-                            continue
-                        tmp_pos_2.append(k)
+                    # 저장해 둔 구슬 위치도 삭제
+                    tmp_pos_2 = [k for i, k in enumerate(tmp_pos) if k[:2] != [i, j]]
+                    tmp_pos = tmp_pos_2
                     continue
                 total += balls_cnt[i][j]
         if total in [0, 1]:
             ans = total
             break
         balls_pos = tmp_pos
+        time += 1
     print(ans)
