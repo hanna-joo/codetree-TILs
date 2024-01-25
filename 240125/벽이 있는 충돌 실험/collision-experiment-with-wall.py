@@ -34,7 +34,7 @@ for _ in range(T):
     time, prev_total = 0, M
     while True:
         if time == 2 * N + 2:
-            if total == prev_total:
+            if prev_total == total:
                 ans = total
                 break
             time = 0
