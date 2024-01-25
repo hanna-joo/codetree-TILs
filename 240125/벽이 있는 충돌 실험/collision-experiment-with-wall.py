@@ -43,10 +43,10 @@ for _ in range(T):
         tmp_pos = []
         for cx, cy, cd in balls_pos:
             nx, ny = cx + command[cd][0], cy + command[cd][1]
-            # 다음 위치가 벽이라면 방향 전환 및 다시 다음 좌표 잡기
+            # 다음 위치가 벽이라면 방향 전환
             if nx <= 0 or nx > N or ny <= 0 or ny > N:
-                cd = change[cd]
-                nx, ny = cx + command[cd][0], cy + command[cd][1]
+                tmp_pos.append([cx, cy, change[cd]])
+                continue
             # 구슬 이동
             balls_cnt[cx][cy] -= 1
             balls_cnt[nx][ny] += 1
