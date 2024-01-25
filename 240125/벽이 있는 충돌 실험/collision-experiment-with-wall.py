@@ -31,7 +31,7 @@ for _ in range(T):
         x, y = int(x), int(y)
         balls_pos.append([x, y, d])
         balls_cnt[x][y] += 1
-    time, prev_total = 0, sum(sum(row) for row in balls_cnt)
+    time, prev_total = 0, M
     while True:
         if time == 2 * N + 2:
             if total == prev_total:
