@@ -33,6 +33,7 @@ for _ in range(T):
         balls_cnt[x][y] += 1
     time, prev_total = 0, M
     while True:
+
         if time == 2 * N + 2:
             if prev_total == total:
                 ans = total
@@ -60,8 +61,9 @@ for _ in range(T):
                 if balls_cnt[i][j] >= 2:
                     balls_cnt[i][j] = 0
                     # 저장해 둔 구슬 위치도 삭제
-                    tmp_pos_2 = [k for i, k in enumerate(tmp_pos) if k[:2] != [i, j]]
+                    tmp_pos_2 = [k for k in tmp_pos if k[:2] != [i, j]]
                     tmp_pos = tmp_pos_2
+                    
                     continue
                 total += balls_cnt[i][j]
         if total in [0, 1]:
