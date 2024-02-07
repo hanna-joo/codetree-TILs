@@ -16,6 +16,7 @@
 - 이동할 숫자 찾기 -> 주변 탐색(범위 내) -> 가장 큰 칸으로 이동
 """
 
+
 def search_target(num):
     for i in range(n):
         for j in range(n):
@@ -25,24 +26,22 @@ def search_target(num):
 
 
 def in_range(y, x):
-    if 0 <= y and 0 <= x and y < n and x < n:
-        return True
-    return False
+    return 0 <= y and 0 <= x and y < n and x < n
 
 
 def search_biggest(cy, cx):
     dys, dxs = [-1, -1, -1, 0, 0, 1, 1, 1], [-1, 0, 1, -1, 1, -1, 0, 1]
     biggest = -1
     biggest_pos = None
+
     for i in range(8):
         ny, nx = cy + dys[i], cx + dxs[i]
         if in_range(ny, nx):
             for k in grid[ny][nx]:
                 if biggest < k:
                     biggest, biggest_pos = k, (ny, nx)
-    if biggest_pos:
-        return biggest_pos
-    return None
+
+    return biggest_pos
 
 
 def move_to_biggest(cy, cx, ck, ny, nx):
@@ -71,7 +70,7 @@ for num in targets:
 
 for i in range(n):
    for j in range(n):
-       if not grid[i][j]:
-           print(None)
-           continue
-       print(*grid[i][j][::-1])
+        if not grid[i][j]:
+            print(None)
+        else:
+            print(*grid[i][j][::-1])
