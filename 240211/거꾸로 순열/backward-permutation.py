@@ -15,6 +15,7 @@ n = int(input())
 visited = [False for _ in range(n+1)]
 answer = []
 
+
 def make_sequence(digit):
     if digit == n + 1:
         print(*answer, end = " ")
