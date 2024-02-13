@@ -17,6 +17,41 @@
     - 방문 등록과 칸 합 초기화
 """
 
+n = int(input())
+grid = [[*map(int, input().split())] for _ in range(n)]
+ans = 0
+visited = [False for _ in range(n)]
+picked = []
+
+def color(row):
+    global ans
+
+    if row == n:
+        colored_sum = 0
+        for i in range(n):
+            colored_sum += grid[i][picked[i]]
+
+        if colored_sum > ans:
+            ans = colored_sum
+
+        return
+
+    for col in range(n):
+        if visited[col]:
+            continue
+        visited[col] = True
+        picked.append(col)
+
+        color(row+1)
+        
+        picked.pop()
+        visited[col] = False
+
+color(0)
+print(ans)
+
+
+"""solution : 시간초과
 import sys
 
 n = int(input())
@@ -25,12 +60,14 @@ max_ans = -sys.maxsize
 ans = 0
 visited_y = [False for _ in range(n)]
 visited_x = [False for _ in range(n)]
+visited_grid = [[False for _ in range(n)] for _ in range(n)]
 
 
 def color(num):
     global max_ans, ans
     # n개의 칸 색칠했으면 종료
     if num == n:
+        print('colored')
         if ans > max_ans:
             max_ans = ans
         return  
@@ -47,7 +84,6 @@ def color(num):
                 continue
             visited_x[x] = True
             
-            #print(y, x)
             ans += grid[y][x]
             color(num+1)
             ans -= grid[y][x]
@@ -61,3 +97,4 @@ def color(num):
 # 0칸에서 시작
 color(0)
 print(max_ans)
+"""
