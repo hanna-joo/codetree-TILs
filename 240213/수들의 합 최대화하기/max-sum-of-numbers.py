@@ -31,7 +31,6 @@ def color(num):
     global max_ans, ans
     # n개의 칸 색칠했으면 종료
     if num == n:
-        print('colored')
         if ans > max_ans:
             max_ans = ans
         return  
