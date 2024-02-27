@@ -17,6 +17,7 @@
 - 재귀 나오면서 방문 기록 취소
 """
 
+# solution : 해설 - 447ms, 26MB
 import sys
 
 INT_MAX = sys.maxsize
@@ -83,7 +84,8 @@ find_min(1)
 
 print(ans)
 
-"""solution : 내것 - 1002ms, 28MB
+
+"""solution : 내 풀이 - 1002ms, 28MB
 import sys
 
 n = int(input())
