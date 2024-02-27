@@ -16,12 +16,15 @@
     -> 모두 방문했으면 종료(단, 종착지가 1번인지 아닌지 파악)
 - 재귀 나오면서 방문 기록 취소
 """
+
+
 import sys
 
 n = int(input())
 graph = [[*map(int, input().split())] for _ in range(n)]
 visited = [False for _ in range(n)]
 min_dist = sys.maxsize
+
 
 def knock(num, dist, cnt):
     global min_dist
@@ -40,6 +43,7 @@ def knock(num, dist, cnt):
         visited[i] = True
         knock(i, dist+graph[num][i], cnt+1)
         visited[i] = False
+
 
 knock(0, 0, 0)
 print(min_dist)
