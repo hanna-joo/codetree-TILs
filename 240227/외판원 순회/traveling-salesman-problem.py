@@ -16,8 +16,6 @@
     -> 모두 방문했으면 종료(단, 종착지가 1번인지 아닌지 파악)
 - 재귀 나오면서 방문 기록 취소
 """
-
-
 import sys
 
 n = int(input())
@@ -34,11 +32,11 @@ def knock(num, dist, cnt):
         return
     
     for i in range(n):
-        # 갈 수 없는 노드면 스킵
-        if graph[num][i] == 0:
-            continue
         # 이미 방문한 노드면 스킵
         if visited[i]:
+            continue
+        # 갈 수 없는 노드면 스킵
+        if graph[num][i] == 0:
             continue
         visited[i] = True
         knock(i, dist+graph[num][i], cnt+1)
