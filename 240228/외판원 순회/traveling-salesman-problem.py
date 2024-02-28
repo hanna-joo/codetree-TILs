@@ -15,9 +15,14 @@
     -> a행에서 0이 아닌 애들 중 방문 안한 애 선택 + 방문
     -> 모두 방문했으면 종료(단, 종착지가 1번인지 아닌지 파악)
 - 재귀 나오면서 방문 기록 취소
+
+4. solution 속도 비교
+- 1 : 재귀함수 매개변수 3개 - 1002ms, 28MB
+- 2 : 1에서 매개변수 1개 줄임 - 974ms, 28MB
+- 3 : 해설 - 447ms, 26MB
 """
 
-# solution : 해설 - 447ms, 26MB
+
 import sys
 
 n = int(input())
@@ -27,12 +32,17 @@ picked = []
 ans = sys.maxsize
 
 
-def knock(num, cnt):
+def knock(cur, cnt):
     global ans
     if cnt == n:
+
+        tmp = 0
+        for i in picked:
+            tmp += i
+            
         # 마지막 노드가 1번 노드인 경우만 취급
-        if num == 0:
-            ans = min(sum(picked), ans)
+        if cur == 0:
+            ans = min(tmp, ans)
         return
     
     for i in range(n):
@@ -40,11 +50,11 @@ def knock(num, cnt):
         if visited[i]:
             continue
         # 갈 수 없는 노드면 스킵
-        if graph[num][i] == 0:
+        if graph[cur][i] == 0:
             continue
 
         visited[i] = True
-        picked.append(graph[num][i])
+        picked.append(graph[cur][i])
 
         knock(i, cnt+1)
         
@@ -53,35 +63,3 @@ def knock(num, cnt):
 
 knock(0, 0)
 print(ans)
-
-"""solution : 내 풀이 - 1002ms, 28MB
-import sys
-
-n = int(input())
-graph = [[*map(int, input().split())] for _ in range(n)]
-visited = [False for _ in range(n)]
-min_dist = sys.maxsize
-
-
-def knock(num, dist, cnt):
-    global min_dist
-    if cnt == n:
-        if num == 0:
-            min_dist = min(min_dist, dist)
-        return
-    
-    for i in range(n):
-        # 이미 방문한 노드면 스킵
-        if visited[i]:
-            continue
-        # 갈 수 없는 노드면 스킵
-        if graph[num][i] == 0:
-            continue
-        visited[i] = True
-        knock(i, dist+graph[num][i], cnt+1)
-        visited[i] = False
-
-
-knock(0, 0, 0)
-print(min_dist)
-"""
