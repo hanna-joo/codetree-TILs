@@ -35,14 +35,9 @@ ans = sys.maxsize
 def knock(cur, cnt):
     global ans
     if cnt == n:
-
-        tmp = 0
-        for i in picked:
-            tmp += i
-            
         # 마지막 노드가 1번 노드인 경우만 취급
         if cur == 0:
-            ans = min(tmp, ans)
+            ans = min(sum(picked), ans)
         return
     
     for i in range(n):
