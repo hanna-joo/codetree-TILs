@@ -27,8 +27,10 @@ import sys
 
 n = int(input())
 graph = [list(map(int, input().split())) for _ in range(n)]
-visited = [False for _ in range(n)]
+
+visited = [False] * n
 picked = []
+
 ans = sys.maxsize
 
 
