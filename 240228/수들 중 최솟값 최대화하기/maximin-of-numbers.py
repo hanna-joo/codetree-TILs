@@ -19,14 +19,16 @@
 
 n = int(input())
 grid = [list(map(int, input().split())) for _ in range(n)]
-picked = []
+
 visited = [False for _ in range(n)]
+picked = []
+
 ans = 0
 
-def color(num):
+def find_max_of_minimums(row):
     global ans
 
-    if num == n:
+    if row == n:
         ans = max(ans, min(picked))
         return
     
@@ -34,13 +36,14 @@ def color(num):
         if visited[i]:
             continue
         
-        picked.append(grid[num][i])
+        picked.append(grid[row][i])
         visited[i] = True
         
-        color(num+1)
+        find_max_of_minimums(row+1)
         
         visited[i] = False
         picked.pop()
 
-color(0)
+
+find_max_of_minimums(0)
 print(ans)
