@@ -13,8 +13,8 @@
 
 3. solution : 완전탐색
 - 처음에 (1, 1)와 (R, C)가 다른지 확인
-- 첫번째 칸 : (1, 1) = W이라고 가정
-- 두번째 칸 : 2행부터 C-2행까지 탐색 -> B인 칸 찾으면 세번째 칸 찾기(이 때 j행)
+- 첫번째 점프 : (1, 1) = W이라고 가정
+- 두번째 점프 : 2행부터 C-2행까지 탐색 -> B인 칸 찾으면 세번째 칸 찾기(이 때 j행)
 - 세번째 칸 : j행부터 C-1행까지 탐색 -> W인 칸 찾으면 cnt+1
 - 칸 없으면 다음 탐색으로 넘어가기
 """
@@ -26,13 +26,12 @@ if arr[0][0] == arr[R-1][C-1]:
     print(0)
     exit()
 
-reverse = {'W': 'B', 'B': 'W'}
 cnt = 0
 for i in range(1, R-2):
     for j in range(1, C-2):
         for k in range(i+1, R-1):
             for l in range(j+1, C-1):
-                if arr[i][j] == reverse[arr[0][0]] and arr[k][l] == reverse[arr[i][j]]:
+                if arr[i][j] != arr[0][0] and arr[k][l] != arr[i][j]:
                     cnt += 1
 
 
