@@ -17,6 +17,7 @@ INT_MAX = sys.maxsize
 
 n = int(input())
 houses = list(map(int, input().split()))
+
 ans = INT_MAX
 
 
@@ -27,9 +28,11 @@ def calculate_distance(num):
     return dist
 
 
+def simulate():
+    global ans
+    for i in range(n):
+        ans = min(ans, calculate_distance(i))
 
-for i in range(n):
-    ans = min(ans, calculate_distance(i))
 
-
+simulate()
 print(ans)
