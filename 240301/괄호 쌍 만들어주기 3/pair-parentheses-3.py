@@ -11,6 +11,19 @@
     - 이후부터 ')'를 만날 때마다 cnt+1
 """
 
+string = input().strip()
+n = len(string)
+
+cnt = 0
+for i in range(n):
+    if string[i] == '(':
+        for j in range(i+1, n):
+            if string[j] == ')':
+                cnt += 1
+
+print(cnt)
+
+"""해설
 # 변수 선언 및 입력
 string = input()
 n = len(string)
@@ -22,19 +35,5 @@ for i in range(n):
         if string[i] == '(' and string[j] == ')':
             cnt += 1
             
-print(cnt)
-
-
-"""
-string = input().strip()
-n = len(string)
-cnt = 0
-
-for i in range(n):
-    if string[i] == '(':
-        for j in range(i+1, n):
-            if string[j] == ')':
-                cnt += 1
-
 print(cnt)
 """
