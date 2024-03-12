@@ -7,9 +7,12 @@
 - a는 모두 숫자 0과 1로 이루어져 있음(맨 앞은 0이 아님)
 - a (0 <= a의 자릿 수 <= 10)
 
-3. solution : 완전탐색 = O(N^2)
+3. solution : 알고리즘 = O(N)
 - 1000 -> 1111 : 0이 1개라도 있는 경우 -> 맨 앞에 있는 0을 1로 변경
 - 1111 -> 1110 : 0이 1개도 없는 경우 -> 끝 자리만 0으로 변경
+
+4. solution : 완전탐색
+
 """
 
 binary = input().strip()
@@ -21,4 +24,4 @@ for i, x in enumerate(binary):
     if i == len(binary) - 1 and x == '1':
         ans = binary[:i] + '0'
 
-print(int('0b' + ans, 2))
+print(int(ans, 2))
