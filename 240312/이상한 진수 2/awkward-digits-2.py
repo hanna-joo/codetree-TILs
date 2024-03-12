@@ -15,6 +15,29 @@
 
 """
 
+import sys
+
+INT_MIN = -sys.maxsize
+
+binary = list(map(int, list(input())))
+length = len(binary)
+
+ans = INT_MIN
+for i in range(length):
+    # i번째 자릿수 변경
+    binary[i] = 1 - binary[i]
+    # 십진수로 변경
+    num = 0
+    for j in range(length):
+        num = num * 2 + binary[j]
+    # 최댓값과 비교
+    ans = max(ans, num)
+    # i번째 자릿수 원래대로 원상복귀
+    binary[i] = 1 - binary[i]
+
+print(ans)
+
+"""solution : 알고리즘
 binary = input().strip()
 
 for i, x in enumerate(binary):
@@ -24,4 +47,5 @@ for i, x in enumerate(binary):
     if i == len(binary) - 1 and x == '1':
         ans = binary[:i] + '0'
 
-print(int(ans, 2))
+print(int('0b' + ans, 2))
+"""
