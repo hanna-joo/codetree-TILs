@@ -12,7 +12,7 @@
 - 1111 -> 1110 : 0이 1개도 없는 경우 -> 끝 자리만 0으로 변경
 
 4. solution : 완전탐색
-
+- (자릿수 변경 -> 값 비교 -> 자릿수 원상복귀) * 반복
 """
 
 import sys
@@ -36,6 +36,7 @@ for i in range(length):
     binary[i] = 1 - binary[i]
 
 print(ans)
+
 
 """solution : 알고리즘
 binary = input().strip()
