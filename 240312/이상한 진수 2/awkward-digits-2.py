@@ -12,13 +12,13 @@
 - 1111 -> 1110 : 0이 1개도 없는 경우 -> 끝 자리만 0으로 변경
 """
 
-two = input().strip()
+binary = input().strip()
 
-for i, x in enumerate(two):
+for i, x in enumerate(binary):
     if x == '0':
-        ans = two[:i] + '1' + two[i+1:]
+        ans = binary[:i] + '1' + binary[i+1:]
         break
-    if i == len(two) - 1 and x == '1':
-        ans = two[:i] + '0'
+    if i == len(binary) - 1 and x == '1':
+        ans = binary[:i] + '0'
 
 print(int('0b' + ans, 2))
