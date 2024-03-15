@@ -23,11 +23,10 @@ points = [[*map(int, input().split())] for _ in range(N)]
 
 
 ans = INT_MAX
-# 노드 하나씩 스킵 (첫번째와 마지막 노드 제외)
+# 체크포인트 하나씩 스킵 (첫번째와 마지막 노드 제외)
 for skip in range(1, N - 1):
     dist = 0
     prev = 0
-
     for cur in range(1, N):
         if cur == skip:
             continue    
@@ -35,5 +34,5 @@ for skip in range(1, N - 1):
         prev = cur
 
     ans = min(ans, dist)
-    
+
 print(ans)
