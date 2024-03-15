@@ -17,22 +17,23 @@ import sys
 
 INT_MAX = sys.maxsize
 
+
 N = int(input())
 points = [[*map(int, input().split())] for _ in range(N)]
 
-min_dist = INT_MAX
 
-for skip in range(1, N-1):
+ans = INT_MAX
+# 노드 하나씩 스킵 (첫번째와 마지막 노드 제외)
+for skip in range(1, N - 1):
     dist = 0
-    cx, cy = points[0][0], points[0][1]
-    cur = 1
-    for nx, ny in points[1:]:
-        if skip != cur:
-            dist += abs(cx - nx) + abs(cy - ny)
-            cx, cy = nx, ny
-        cur += 1
-    min_dist = min(dist, min_dist)
+    prev = 0
 
+    for cur in range(1, N):
+        if cur == skip:
+            continue    
+        dist += abs(points[cur][0] - points[prev][0]) + abs(points[cur][1] - points[prev][1])
+        prev = cur
+
+    ans = min(ans, dist)
     
-
-print(min_dist)
+print(ans)
