@@ -54,7 +54,7 @@ def bfs(y, x):
 
     visited = [[False for _ in range(n)] for _ in range(n)]
     max_val = 0
-    max_pos = (y, c)
+    max_pos = (y, x)
     P = grid[y][x]
 
     visited[y][x] = True
