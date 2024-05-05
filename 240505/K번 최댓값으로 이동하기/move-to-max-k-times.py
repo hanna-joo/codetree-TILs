@@ -29,13 +29,7 @@ def in_range(y, x):
 
 # 이동 가능 여부 판단
 def can_go(y, x):
-    if not in_range(y, x):
-        return False
-    
-    if visited[y][x] or grid[y][x] >= P:
-        return False
-    
-    return True
+    return in_range(y, x) and not visited[y][x] and grid[y][x] < P
 
 # 도착지 후보 변경 시 위치 업데이트
 def update_pos(y, x):
