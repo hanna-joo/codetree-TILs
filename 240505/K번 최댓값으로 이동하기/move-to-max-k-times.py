@@ -23,11 +23,11 @@ n, k = map(int, input().split())
 grid = [[*map(int, input().split())] for _ in range(n)]
 r, c = map(int, input().split())
 
-
+# 범위 안에 있는지 여부 판단
 def in_range(y, x):
     return 0 <= y < n and 0 <= x < n
 
-
+# 이동 가능 여부 판단
 def can_go(y, x):
     if not in_range(y, x):
         return False
@@ -37,13 +37,15 @@ def can_go(y, x):
     
     return True
 
-
+# 도착지 후보 변경 시 위치 업데이트
 def update_pos(y, x):
-    global max_pos, max_val
+    global max_val, max_pos
 
+    # 후보값보다 크면 후보값과 후보위치 변경
     if grid[y][x] > max_val:
         max_val = grid[y][x]
         max_pos = (y, x)
+    # 후보값과 같으면 행, 열 순으로 더 작은 위치로 후보위치 변경
     elif grid[y][x] == max_val:
         if max_pos[0] > y or (max_pos[0] == y and max_pos[1] > x):
             max_pos = (y, x)
@@ -52,9 +54,9 @@ def update_pos(y, x):
 def bfs(y, x):
     global visited, max_val, max_pos, P
 
+    # 변수 초기화
     visited = [[False for _ in range(n)] for _ in range(n)]
-    max_val = 0
-    max_pos = (y, x)
+    max_val, max_pos = 0, (y, x)
     P = grid[y][x]
 
     visited[y][x] = True
@@ -74,9 +76,11 @@ def bfs(y, x):
                 q.append((ny, nx))
 
 
+# k번 반복
 cur = (r-1, c-1)
 for _ in range(k):
     bfs(cur[0], cur[1])
     cur = max_pos
 
+# 정답 출력
 print(max_pos[0] + 1, max_pos[1] + 1)
