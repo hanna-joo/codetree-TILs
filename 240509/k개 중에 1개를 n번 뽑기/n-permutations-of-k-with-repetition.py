@@ -15,12 +15,13 @@ K, N = map(int, input().split())
 # 글로벌 변수
 ans = []
 
+# 결과값 출력
 def print_answer(ans):
     for i in ans:
         print(i, end=" ")
     print()
 
-
+# 재귀함수
 def choose(num):
     if num == N + 1:
         print_answer(ans)
