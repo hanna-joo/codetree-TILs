@@ -44,7 +44,7 @@ def is_beautiful():
 
 # 모든 n자리 수 후보 찾는 함수
 def count_beautiful_seq(cnt):
-    global seq, ans
+    global ans
 
     # n자리 모두 다 구했으면 종료
     if cnt == n:
@@ -58,7 +58,5 @@ def count_beautiful_seq(cnt):
         seq.pop()
     
 
-
 count_beautiful_seq(0)
-
 print(ans)
