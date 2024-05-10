@@ -12,26 +12,25 @@
 - 첫째 줄 : n (1<=n<=10)
 
 3. 로직
-- 자릿수 하나씩 구하기
-- 3자릿수 : 111, 122, 221, 333
-- 1, 22, 333, 4444
+- 모든 자릿수 구하기 -> 아름다운 수인지 판별하기
+    - 3자릿수 : 111, 122, 221, 333
 """
 
 # 입력 변수
 n = int(input())
 
 # 글로벌 변수
-cur = list()
-candidates = list()
+cur = []
 ans = 0
 
 # 모든 n자리 수 후보 찾는 함수
 def choose(cnt):
-    global cur, candidates
+    global cur, ans
 
     # n자리 모두 다 구했으면 종료
     if cnt == n:
-        candidates.append(list(cur))
+        if is_beautiful(cur):
+            ans += 1
         return
 
     for i in range(1, 5):
@@ -54,9 +53,5 @@ def is_beautiful(element):
     return True
 
 choose(0)
-ans = 0
-for c in candidates:
-    if is_beautiful(c):
-        ans += 1
 
 print(ans)
