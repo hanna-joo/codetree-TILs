@@ -20,38 +20,45 @@
 n = int(input())
 
 # 글로벌 변수
-cur = []
+seq = []
 ans = 0
 
+# 아름다운 수인지 확인하는 함수
+def is_beautiful():
+    prev = [seq[0], 1]
+    for cur in seq[1:]:
+        # 이전 값이 부분 아름다운 수면 값 초기화
+        if prev[0] == prev[1]:
+            prev = [cur, 1]
+        # 이전 값과 현재 값이 같으면 이전 값 카운트+1
+        elif cur == prev[0]:
+            prev[1] += 1
+        # 이전 값이 부분 아름다운 수도 아니고, 이전 값과 현재 값이 다르면 아름다운 수가 아님
+        else:
+            return False
+
+    if prev[0] != prev[1]:
+        return False
+
+    return True
+
 # 모든 n자리 수 후보 찾는 함수
-def choose(cnt):
-    global cur, ans
+def count_beautiful_seq(cnt):
+    global seq, ans
 
     # n자리 모두 다 구했으면 종료
     if cnt == n:
-        if is_beautiful(cur):
+        if is_beautiful():
             ans += 1
         return
 
     for i in range(1, 5):
-        cur.append(i)
-        choose(cnt+1)
-        cur.pop()
+        seq.append(i)
+        count_beautiful_seq(cnt+1)
+        seq.pop()
     
-# 아름다운 수인지 확인하는 함수
-def is_beautiful(element):
-    prev = [element[0], 1]
-    for cur in element[1:]:
-        if prev[0] == prev[1]:
-            prev = [cur, 1]
-        elif cur == prev[0]:
-            prev[1] += 1
-        else:
-            return False
-    if prev[0] != prev[1]:
-        return False
-    return True
 
-choose(0)
+
+count_beautiful_seq(0)
 
 print(ans)
