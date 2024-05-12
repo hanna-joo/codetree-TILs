@@ -33,7 +33,6 @@ dp = [0 for _ in range(MAX_N + 1)]
 # 초깃값 설정
 dp[0] = 1
 dp[1] = 2
-dp[2] = 7
 
 # 동적 프로그래밍
 for i in range(3, n + 1):
